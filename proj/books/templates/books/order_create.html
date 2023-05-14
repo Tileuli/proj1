@@ -1,0 +1,35 @@
+{% extends 'books/base.html' %}
+
+{% block productt %}{% endblock %}
+{% block product2 %}{% endblock %}
+{% block content %}
+  <h1>Информация о покупателя</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_first_name">Имя</label>
+      {{ form.first_name }}
+    </div>
+    <div class="form-group">
+      <label for="id_last_name">Фамилия</label>
+      {{ form.last_name }}
+    </div>
+    <div class="form-group">
+      <label for="id_email">Емайл</label>
+      {{ form.email }}
+    </div>
+    <div class="form-group">
+      <label for="id_address">Адрес</label>
+      {{ form.address }}
+    </div>
+    <div class="form-group">
+      <label for="id_postal_code">Почтовый индекс</label>
+      {{ form.postal_code }}
+    </div>
+    <div class="form-group">
+      <label for="id_city">Город</label>
+      {{ form.city }}
+    </div>
+    <button type="submit" class="btn btn-success">Продолжить</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'books/base.html' %}
+
+{% block productt %}{% endblock %}
+{% block product2 %}{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h2>{{ item.name }}</h2>
+      <p class="lead">{{ item.description }}</p>
+      <p class="h3 font-weight-bold">{{ item.price }} ₸</p>
+      <form action="{% url 'cart_add' item.name %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="quantity" value="1" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">
+          Add to Cart
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

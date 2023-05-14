@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Example</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <h2>Create Item</h2>
+  <form class="form-group" method="POST" action="{% url 'create_item' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br>
+    <label for="image">Upload a image:</label>
+    <input class="form-control-file" type="file" name="image" accept="image/*">
+    <br>
+    <label for="name">Name:</label>
+    <input class="form-control" type="text" name="name" required>
+    <br>
+    <label for="description">Description:</label>
+    <textarea class="form-control" name="description" required></textarea>
+    <br>
+    <label for="price">Price:</label>
+    <input class="form-control" type="number" name="price" required>
+    <br>
+    <button class="btn btn-primary" type="submit">Create item</button>
+  </form>
+</body>
+</html>

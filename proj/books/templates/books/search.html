@@ -1,0 +1,29 @@
+{% extends 'books/base.html' %}
+
+{% block productt %}{% endblock %}
+{% block product2 %}{% endblock %}
+{% block content %}
+<div class="productt">Результаты поиска для {{ query }}</div>
+<div class="product-nav">
+    {% for item in search %}
+    <div class="product-card">
+        <div class="product-image">
+            {% if item.image %}
+            <a href="{% url 'product_detail' item.name %}">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            </a>
+            {% endif %}
+        </div>
+        <div class="product-name">
+            <a href="{% url 'product_detail' item.name %}">{{ item.name }}</a>
+        </div>
+        <div class="product-prices">
+            <span class="bonus-sticker">{{ item.description }}</span>
+            <span class="product-price">{{ item.price }} ₸</span>
+        </div>
+    </div>
+    {% empty %}
+    <p>No search results.</p>
+    {% endfor %}
+</div>
+{% endblock %}

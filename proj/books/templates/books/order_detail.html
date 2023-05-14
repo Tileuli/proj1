@@ -1,0 +1,48 @@
+{% extends 'books/base.html' %}
+
+{% block productt %}{% endblock %}
+{% block product2 %}{% endblock %}
+{% block content %}
+<h1>Заказ {{ order.id }}</h1>
+<p>Созданный: {{ order.created }}</p>
+<p>Последнее обновление: {{ order.updated }}</p>
+<p>Статус: {{ order.payment_status }}</p>
+<p>Итого: {{ order.get_total_cost }} ₸</p>
+<h2>Корзина</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Наименование</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in order.items.all %}
+    <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.price }} ₸</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.get_cost }} ₸</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">В корзине пока ничего нет</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if order.payment_status != 'оплачен' %}
+<form method="post" action="{% url 'order_purchase' order_id=order.id %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Продолжить</button>
+</form>
+{% endif %}
+{% if order.payment_status != 'отменен' %}
+<form method="post" action="{% url 'order_cancel' order_id=order.id %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Отклонить заказ</button>
+</form>
+{% endif %}
+{% endblock %}

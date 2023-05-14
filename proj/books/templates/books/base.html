@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YOBOOK</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'books/css/style1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'books/css/bootstrap.min.css' %}">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+</head>
+<style>
+  body {
+    overflow-x: hidden;
+  }
+
+  .productt {
+    display: flex;
+    width: 100%;
+    margin: 30px 0px -20px 50px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .product-nav {
+    display: flex;
+	margin: 50px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .product-nav::-webkit-scrollbar{
+    display: flex;
+  }
+
+  .product-card {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 200px;
+    height: 400px;
+    margin-right: 20px;
+  }
+
+  .product-card a {
+    text-decoration: none;
+  }
+
+  .product-card .product-image {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	height: 230px;
+  	background-color: #f8f8f8;
+  	border-radius: 5px;
+  	overflow: hidden;
+  }
+
+  .product-card .product-image img {
+	max-width: 100%;
+  	height: 200px;
+  }
+
+  .product-card .product-name {
+  	padding: 15px 10px;
+    color: #222222;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .product-card .product-price {
+    font-weight: bold;
+    color: #222222;
+    padding: 10px 10px;
+    font-size: 18px;
+    display: inline-block;
+  }
+
+  .product-card .bonus-sticker {
+    background-color: #EDEDED;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .product-card .bonus-sticker:last-child {
+    margin-right: 0;
+  }
+
+
+</style>
+<body>
+<header>
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left">
+                <li><a href="#">О сайте</a></li>
+                <li><a href="#">Адреса магазинов</a></li>
+                <li><a href="#">Ночная тема</a></li>
+            </ul>
+            <ul class="header-links pull-right">
+                <li><a href="#">РУС</a></li>
+                <li><a href="#">Выбрать город</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Личный кабинет</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="{% url 'item_list' %}" class="logo" style="color: #fff; font-size: 35px;">YOBOOK</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="header-search">
+                        <form method="GET" action="{% url 'search_results' %}">
+                            <input class="input" name="q" placeholder="Поиск книги"
+                                   onkeydown="if(event.keyCode == 13) {this.form.submit();}">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3 clearfix">
+                    <div class="header-ctn">
+                        <div>
+                            <a href="#">
+                                <span>Избранное</span>
+                            </a>
+                        </div>
+                        <div class="dropdown">
+                            <a href="{% url 'cart_detail' %}" class="dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="true">
+                                <span>Корзина</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<nav id="navigation">
+    <div class="container">
+        <div id="responsive-nav">
+            <ul class="main-nav nav navbar-nav">
+                <li class="active"><a href="#">Каталог</a></li>
+                <li><a href="#">Акции</a></li>
+                <li><a href="#">Новинки</a></li>
+                <li><a href="#">Сертификаты</a></li>
+                <li><a href="#">Книги</a></li>
+                <li><a href="#">Настольные игры</a></li>
+                <li><a href="#">Творчество и хобби</a></li>
+                <li><a href="#">Рекомендуем</a></li>
+                <li><a href="#">Топ продаж</a></li>
+                <li><a href="#">Суперскидки</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="main_carousel">
+    <a href="#">
+        <img src='https://simg.marwin.kz/media/wysiwyg/dynamic/23/40-na-assortiment-populyarnogo-non-fikshna2.jpg'
+             style="height: 330px; border-radius: 8px;">
+    </a>
+    <div class="q-carousel__control q-carousel__arrow q-carousel__prev-arrow q-carousel__prev-arrow--horizontal abso lute flex flex-center">
+        <button id="prev-button"
+                class="q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--round bg-color22 text-primary q-btn--actionable q-focusable q-hoverable q-btn--dense"
+                tabindex="0" type="button">
+            <i class="q-icon notranslate material-icons" aria-hidden="true" role="img"><</i>
+        </button>
+    </div>
+    <div class="q-carousel__control q-carousel__arrow q-carousel__next-arrow q-carousel__next-arrow--horizontal absolute flex flex-center">
+        <button id="next-button"
+                class="q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--round bg-color22 text-primary q-btn--actionable q-focusable q-hoverable q-btn--dense"
+                tabindex="0" type="button">
+            <i class="q-icon notranslate material-icons" aria-hidden="true" role="img">></i>
+        </button>
+    </div>
+</div>
+{% block product2 %}
+<div class="productt">Вы недавно смотрели</div>
+{% endblock %}
+<div class="product-nav">
+    {% for item in last_viewed_items %}
+    <div class="product-card">
+        <div class="product-image">
+            {% if item.item.image %}
+            <a href="{% url 'product_detail' item.item.name %}"><img src="{{ item.item.image.url }}"
+                                                                     alt="{{ item.item.name }}"></a>
+            {% endif %}
+        </div>
+        <div class="product-name"><a href="{% url 'product_detail' item.item.name %}">{{ item.item.name }}</a></div>
+        <div class="product-prices">
+            <span class="bonus-sticker">{{ item.item.description }}</span>
+            <span class="product-price">{{ item.item.price }} ₸</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% block productt %}
+<div class="productt">Рекомендуем вам</div>
+{% endblock %}
+<div class="product-nav">
+    {% for item in items %}
+    <div class="product-card">
+        <div class="product-image">
+            {% if item.image %}
+            <a href="{% url 'product_detail' item.name %}"><img src="{{ item.image.url }}" alt="{{ item.name }}"></a>
+            {% endif %}
+        </div>
+        <div class="product-name"><a href="{% url 'product_detail' item.name %}">{{ item.name }}</a></div>
+        <div class="product-prices">
+            <span class="bonus-sticker">{{ item.description }}</span>
+            <span class="product-price">{{ item.price }} ₸</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<main role="main" class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+<div id="newsletter" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Узнавайте о специальных предложениях первыми!</p>
+                    Оставьте свой e-mail, чтобы сделать будущие покупки выгодней!
+                    <form method="post" action="{% url 'send_email' %}">
+                        {% csrf_token %}
+                        <input class="input" type="email" name="email" placeholder="Ваш Email">
+                        <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i>Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title" style="color: #2980B9; font-size: 30px;"><strong>YOBOOK</strong>
+                        </h3>
+                        <p style="color: #6a707c">+7 747 440 40 40</p>
+                        <ul class="footer-links">
+                            <li><a href="#">График работы контак центра</a></li>
+                            <li><a href="#">Пн-Вс 9:00-20:00</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title" style="color: #000">Компания</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">О компании</a></li>
+                            <li><a href="#">Адреса магазинов</a></li>
+                            <li><a href="#">Вакансии</a></li>
+                            <li><a href="#">Гарантийное обслуживание техники</a></li>
+                            <li><a href="#">Соглашение о конфиденциальности</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title" style="color: #000">Партнёрам</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Тендеры</a></li>
+                            <li><a href="#">Арендодателям</a></li>
+                            <li><a href="#">Корпоративным клиентам</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-center">
+        <div class="col-12 col-md-11 col-lg-10 col-xl-8">
+            <div class="flex items-center justify-between">
+                <div class="text-ts2 text-white" style="font-size: 12px;">Сеть магазинов электроники и бытовой техники
+                    “Мечта” <br> © Все права защищены. 2023
+                </div>
+                <div>
+                    <div class="row items-center">
+                        <a href="https://play.google.com/store/apps/details?id=kz.mechta"><img
+                                src="https://www.mechta.kz/img/Googleplay.c92792db.svg" alt="google play"
+                                loading="lazy"></a>
+                        <a href="https://apps.apple.com/app/mechta-kz/id1610963362"><img
+                                src="https://www.mechta.kz/img/Appstore.3e7bd707.svg" alt="app store"
+                                loading="lazy"></a>
+                        <a href="https://appgallery.huawei.com/app/C107614195"><img
+                                src="https://www.mechta.kz/img/Appgallery.f4ac9d30.svg" alt="app gallery"
+                                loading="lazy"></a>
+                    </div>
+                </div>
+                <div><img src="{% static 'books/images/visa.png' %}" alt="" width="244" height="25"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="{% static 'books/js/base2.js' %}"></script>
+</body>
+</html>

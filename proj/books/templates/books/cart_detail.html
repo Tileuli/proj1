@@ -1,0 +1,59 @@
+{% extends 'books/base.html' %}
+
+{% block productt %}{% endblock %}
+{% block product2 %}{% endblock %}
+{% block content %}
+<form method="POST" action="{% url 'order_create' %}">
+    <h1>Your cart</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>
+                <a href="{% url 'product_detail' item.product.name %}">{{ item.product.name }}</a>
+            </td>
+            <td>{{ item.price }} ₸</td>
+            <td>
+                <form action="{% url 'cart_add' item.product.name %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">Update</button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="update" value="True">
+                </form>
+            </td>
+            <td>
+                <a href="{% url 'cart_remove' item.product.name %}" class="btn btn-danger btn-sm">
+                    Remove
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Your cart is empty</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2"></td>
+            <th>Total:</th>
+            <td>{{ cart.get_total_price }}</td>
+        </tr>
+        </tfoot>
+    </table>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Create Order</button>
+</form>
+{% endblock %}
