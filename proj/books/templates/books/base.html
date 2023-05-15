@@ -167,6 +167,7 @@ li.genre-item:hover > ul.submenu {
   display: block;
 }
 
+
 </style>
 <body>
 <header>
@@ -233,46 +234,47 @@ li.genre-item:hover > ul.submenu {
                     <ul class="dropdown-menu" style="border-radius: 5px">
                         <li class="genre-item"><a href="#">Художественная литература</a>
                             <ul class="submenu dropdown-menu">
-                                <li><a href="#">Фэнтези</a></li>
-                                <li><a href="#">Детективы</a></li>
-                                <li><a href="#">Эротика</a></li>
-                                <li><a href="#">Ужасы</a></li>
-                                <li><a href="#">Приключения</a></li>
-                                <li><a href="#">Поэзия</a></li>
-                                <li><a href="#">Фантастика</a></li>
-                                <li><a href="#">Любовные романы</a></li>
-                                <li><a href="#">Триллеры</a></li>
-                                <li><a href="#">Комиксы и манга</a></li>
-                                <li><a href="#">Проза</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Фэнтези">Фэнтези</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Детективы">Детективы</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Эротика">Эротика</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Ужасы">Ужасы</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Приключения">Приключения</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Поэзия">Поэзия</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Фантастика">Фантастика</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Любовные романы">Любовные романы</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Триллеры">Триллеры</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Комиксы и манга">Комиксы и манга</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Проза">Проза</a></li>
                             </ul>
                         </li>
                         <li class="genre-item"><a href="#">Нон-фикшен</a>
                             <ul class="submenu dropdown-menu">
-                                <li><a href="#">Бизнес-литература</a></li>
-                                <li><a href="#">Психология</a></li>
-                                <li><a href="#">Искусство и культура</a></li>
-                                <li><a href="#">Научная литература</a></li>
-                                <li><a href="#">Хобби и досуг</a></li>
-                                <li><a href="#">Изучение языков</a></li>
-                                <li><a href="#">Компьютерная литература</a></li>
-                                <li><a href="#">История</a></li>
-                                <li><a href="#">Общество</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Бизнес-литература">Бизнес-литература</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Психология">Психология</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Искусство и культура">Искусство и культура</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Научная литература">Научная литература</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Хобби и досуг">Хобби и досуг</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Изучение языков">Изучение языков</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Компьютерная литература">Компьютерная литература</a></li>
+                                <li><a href="{% url 'search_results' %}?q=История">История</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Общество">Общество</a></li>
                             </ul>
                         </li>
                         <li class="genre-item"><a href="#">Детская литература</a>
                             <ul class="submenu dropdown-menu">
-                                <li><a href="#">Книги для дошкольников</a></li>
-                                <li><a href="#">Внеклассное чтение</a></li>
-                                <li><a href="#">Детские детективы</a></li>
-                                <li><a href="#">Школьные учебники</a></li>
-                                <li><a href="#">Книги для подростков</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Книги для дошкольников">Книги для дошкольников</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Внеклассное чтение">Внеклассное чтение</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Детские детективы">Детские детективы</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Школьные учебники">Школьные учебники</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Книги для подростков">Книги для подростков</a></li>
                             </ul>
                         </li>
-                        <li class="genre-item"><a href="#">Публицистика и периодика</a>
+                        <li class="genre-item">
+                            <a href="#">Публицистика и периодика</a>
                             <ul class="submenu dropdown-menu" style="width: 230px">
-                                <li><a href="#">Публицистическая литература</a></li>
-                                <li><a href="#">Подкасты</a></li>
-                                <li><a href="#">Периодические издания</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Публицистическая литература">Публицистическая литература</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Подкасты">Подкасты</a></li>
+                                <li><a href="{% url 'search_results' %}?q=Периодические издания">Периодические издания</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -487,6 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 
 </script>
 </body>
