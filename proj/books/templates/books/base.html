@@ -42,8 +42,8 @@
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    width: 200px;
-    height: 400px;
+    width: 210px;
+    height: 420px;
     margin-right: 20px;
   }
 
@@ -96,6 +96,76 @@
     margin-right: 0;
   }
 
+#navigation {
+  background-color: #f8f8f8;
+}
+
+#responsive-nav .main-nav.navbar-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+#responsive-nav .main-nav.navbar-nav li {
+  position: relative;
+}
+
+#responsive-nav .main-nav.navbar-nav > li > a:hover{
+  color: #2980B9;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: none;
+  z-index: 999;
+}
+
+.genre-item:hover > .dropdown-menu {
+  display: block;
+}
+
+li.genre-item {
+  position: relative;
+}
+
+li.genre-item > a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+li.genre-item > ul.submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+li.genre-item > ul.submenu li {
+  display: block;
+}
+
+li.genre-item > ul.submenu li a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+li.genre-item:hover > ul.submenu {
+  display: block;
+}
 
 </style>
 <body>
@@ -108,6 +178,7 @@
                 <li><a href="#">Ночная тема</a></li>
             </ul>
             <ul class="header-links pull-right">
+
                 <li><a href="#">РУС</a></li>
                 <li><a href="#">Выбрать город</a></li>
                 {% if user.is_authenticated %}
@@ -157,7 +228,55 @@
     <div class="container">
         <div id="responsive-nav">
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Каталог</a></li>
+                <li class="active">
+                    <a href="#">Каталог</a>
+                    <ul class="dropdown-menu" style="border-radius: 5px">
+                        <li class="genre-item"><a href="#">Художественная литература</a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a href="#">Фэнтези</a></li>
+                                <li><a href="#">Детективы</a></li>
+                                <li><a href="#">Эротика</a></li>
+                                <li><a href="#">Ужасы</a></li>
+                                <li><a href="#">Приключения</a></li>
+                                <li><a href="#">Поэзия</a></li>
+                                <li><a href="#">Фантастика</a></li>
+                                <li><a href="#">Любовные романы</a></li>
+                                <li><a href="#">Триллеры</a></li>
+                                <li><a href="#">Комиксы и манга</a></li>
+                                <li><a href="#">Проза</a></li>
+                            </ul>
+                        </li>
+                        <li class="genre-item"><a href="#">Нон-фикшен</a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a href="#">Бизнес-литература</a></li>
+                                <li><a href="#">Психология</a></li>
+                                <li><a href="#">Искусство и культура</a></li>
+                                <li><a href="#">Научная литература</a></li>
+                                <li><a href="#">Хобби и досуг</a></li>
+                                <li><a href="#">Изучение языков</a></li>
+                                <li><a href="#">Компьютерная литература</a></li>
+                                <li><a href="#">История</a></li>
+                                <li><a href="#">Общество</a></li>
+                            </ul>
+                        </li>
+                        <li class="genre-item"><a href="#">Детская литература</a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a href="#">Книги для дошкольников</a></li>
+                                <li><a href="#">Внеклассное чтение</a></li>
+                                <li><a href="#">Детские детективы</a></li>
+                                <li><a href="#">Школьные учебники</a></li>
+                                <li><a href="#">Книги для подростков</a></li>
+                            </ul>
+                        </li>
+                        <li class="genre-item"><a href="#">Публицистика и периодика</a>
+                            <ul class="submenu dropdown-menu" style="width: 230px">
+                                <li><a href="#">Публицистическая литература</a></li>
+                                <li><a href="#">Подкасты</a></li>
+                                <li><a href="#">Периодические издания</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#">Акции</a></li>
                 <li><a href="#">Новинки</a></li>
                 <li><a href="#">Сертификаты</a></li>
@@ -320,5 +439,55 @@
     </div>
 </footer>
 <script type="text/javascript" src="{% static 'books/js/base2.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the catalog menu item and its sub-menu
+    var catalogItem = document.querySelector('#navigation .main-nav > li:first-child');
+    var catalogSubMenu = catalogItem.querySelector('.dropdown-menu');
+
+    // Show/hide the catalog sub-menu on mouseover/mouseout
+    catalogItem.addEventListener('mouseover', function() {
+        catalogSubMenu.style.display = 'block';
+    });
+
+    catalogItem.addEventListener('mouseout', function() {
+        catalogSubMenu.style.display = 'none';
+    });
+
+    // Get all genre items and their sub-menus
+    var genreItems = catalogSubMenu.querySelectorAll('.dropdown-menu > li');
+
+    // Show/hide the genre sub-menus on mouseover/mouseout
+    genreItems.forEach(function(genreItem) {
+        var genreSubMenu = genreItem.querySelector('.submenu');
+
+        genreItem.addEventListener('mouseover', function() {
+            genreSubMenu.style.display = 'block';
+        });
+
+        genreItem.addEventListener('mouseout', function() {
+            genreSubMenu.style.display = 'none';
+        });
+    });
+
+    // Get the genres list and their sub-genres
+    var genresList = document.querySelector('.genres-list');
+    var genreItemsList = genresList.querySelectorAll('.genre-item');
+
+    // Show/hide the sub-genres on mouseover/mouseout
+    genreItemsList.forEach(function(genreItem) {
+        var subGenresList = genreItem.querySelector('.sub-genres');
+
+        genreItem.addEventListener('mouseover', function() {
+            subGenresList.style.display = 'block';
+        });
+
+        genreItem.addEventListener('mouseout', function() {
+            subGenresList.style.display = 'none';
+        });
+    });
+});
+
+</script>
 </body>
 </html>
