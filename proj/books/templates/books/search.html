@@ -18,8 +18,10 @@
         <div class="product-name">
             <a href="{% url 'product_detail' item.name %}">{{ item.name }}</a>
         </div>
-        <div class="product-prices">
+        <div class="product-description">
             <span class="bonus-sticker">{{ item.description }}</span>
+        </div>
+        <div class="product-prices">
             <span class="product-price">{{ item.price }} ₸</span>
         </div>
     </div>

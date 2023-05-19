@@ -6,9 +6,9 @@
   let currentIndex = 0;
 
   const images = [
-        'https://simg.marwin.kz/media/wysiwyg/dynamic/23/40-na-assortiment-populyarnogo-non-fikshna2.jpg',
         'https://simg.marwin.kz/media/wysiwyg/dynamic/23/blagosolovenie-nebozhitelej-4-2.jpg',
         'https://simg.marwin.kz/media/wysiwyg/dynamic/23/monopoliya-igra-stavshaya-legendoj2.jpg',
+        'https://simg.marwin.kz/media/wysiwyg/dynamic/23/40-na-assortiment-populyarnogo-non-fikshna2.jpg',
         'https://simg.marwin.kz/media/wysiwyg/dynamic/23/kvartiranti2.jpg'
   ];
 

@@ -160,6 +160,15 @@ ul, ol {
   background-color: #fff;
 }
 
+#top-header a {
+  text-decoration: none;
+}
+
+#header a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .header-links li {
   display: inline-block;
   margin-right: 15px;
@@ -672,6 +681,7 @@ ul, ol {
 
 .footer-links li a {
   color: #6a707c;
+  text-decoration: none;
 }
 
 .footer-links li i {
