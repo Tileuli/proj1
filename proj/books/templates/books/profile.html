@@ -140,6 +140,7 @@
                     <td>{{ order.created }}</td>
                     <td>{{ order.first_name }}</td>
                     <td>{{ order.payment_status }}</td>
+                    <td><a href="{% url 'order_detail' order_id=order.id %}">View Details</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>

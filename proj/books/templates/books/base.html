@@ -43,7 +43,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     width: 210px;
-    height: 420px;
+    height: 400px;
     margin-right: 20px;
   }
 
@@ -94,6 +94,12 @@
 
   .product-card .bonus-sticker:last-child {
     margin-right: 0;
+  }
+
+  .product-description {
+    max-height: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
 #navigation {
@@ -292,6 +298,7 @@ li.genre-item:hover > ul.submenu {
         </div>
     </div>
 </nav>
+{% block product3 %}
 <div class="main_carousel">
     <a href="#">
         <img src='https://simg.marwin.kz/media/wysiwyg/dynamic/23/40-na-assortiment-populyarnogo-non-fikshna2.jpg'
@@ -312,6 +319,7 @@ li.genre-item:hover > ul.submenu {
         </button>
     </div>
 </div>
+{% endblock %}
 {% block product2 %}
 <div class="productt">Вы недавно смотрели</div>
 {% endblock %}
@@ -325,8 +333,10 @@ li.genre-item:hover > ul.submenu {
             {% endif %}
         </div>
         <div class="product-name"><a href="{% url 'product_detail' item.item.name %}">{{ item.item.name }}</a></div>
-        <div class="product-prices">
+        <div class="product-description">
             <span class="bonus-sticker">{{ item.item.description }}</span>
+        </div>
+        <div class="product-prices">
             <span class="product-price">{{ item.item.price }} ₸</span>
         </div>
     </div>
@@ -344,8 +354,10 @@ li.genre-item:hover > ul.submenu {
             {% endif %}
         </div>
         <div class="product-name"><a href="{% url 'product_detail' item.name %}">{{ item.name }}</a></div>
-        <div class="product-prices">
+        <div class="product-description">
             <span class="bonus-sticker">{{ item.description }}</span>
+        </div>
+        <div class="product-prices">
             <span class="product-price">{{ item.price }} ₸</span>
         </div>
     </div>

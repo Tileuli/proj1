@@ -19,6 +19,7 @@ def admin_page(request):
     context = {'items': items}
     return render(request, 'books/admin.html', context)
 
+@login_required
 def item_list(request):
     items = Item.objects.all()
     last_viewed_items = LastViewed.objects.filter(user=request.user).order_by('-viewed_at')[:5]
